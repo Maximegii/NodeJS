@@ -3,6 +3,7 @@ import shopRouter from "./routes/shop.js";
 import authRouter from "./routes/auth.js"
 
 
+
 const app = Express();
 
 //Configuration d'express en outil de templating (ce qui permet de génerer le code html)
