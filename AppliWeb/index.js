@@ -1,20 +1,26 @@
 import Express from 'express';
+import shopRouter from "./routes/shop.js";
+import authRouter from "./routes/auth.js"
 
-let ejs = require('ejs');
-let people = ['geddy', 'nell','alex'];
-let html = ejs.render('<%= people.join(", "); %>', {people: people});
 
 const app = Express();
 
+//Configuration d'express en outil de templating (ce qui permet de génerer le code html)
+
+app.use(Express.static("public"));
+
+app.set('view engine', 'ejs');
+
+app.set("views", "views");
+
 app.get("/", (req,res)=> {
-    res.send("Hello World");
+    res.render("home",{})
 });
 
-app.post("/post", (req,res) => {
-    if (!req.body){
-        return res.status(400).send("Request body is missing")
-    }
-})
+app.use("/explore", shopRouter);
+
+app.use("/account", authRouter)
+
 
 app.listen(3000, () => {
     console.log("server is running on port 3000")
