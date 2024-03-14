@@ -1,0 +1,20 @@
+<%- include('include/head.ejs') %>
+</head>
+
+<body>
+    <%- include('include/header.ejs') %>
+    <main class="centered">
+        <h1><%= product.name %></h1>
+        <hr>
+        <div>
+            <img src="<%= product.img %>" alt="<%= product.name %>">
+        </div>
+        <h2>$<%= product.price %></h2>
+        <p><%= product.description %></p>
+
+        <%- include('include/footer.ejs') %>
+
+        <%- include('include/script.ejs') %>
+        
+    </main>
+
