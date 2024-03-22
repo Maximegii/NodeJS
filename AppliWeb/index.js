@@ -14,9 +14,8 @@ app.set('view engine', 'ejs');
 
 app.set("views", "views");
 
-app.get("/", (req,res)=> {
-    res.render("home",{})
-});
+
+app.use("/",shopRouter)
 
 app.use("/explore", shopRouter);
 

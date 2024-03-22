@@ -1,5 +1,6 @@
 
 import product from "../models/products.js";
+import  connection  from "../util/database.js";
 
 // router.get("/", (req,res,next)=> {
 //     console.log(products);
@@ -9,6 +10,14 @@ import product from "../models/products.js";
 //         products: products,
 //     })
 // });
+//Controlleur de la page d'accueil du site
+export const shopControllerHome = (req,res,next) =>{
+        res.render("home", {
+            pagetitle: "Nos produits",
+            path: "/",
+        })
+}
+//controlleur de la page boutique
 export const shopController = (req,res,next) =>{
     product.fetchAll()
     .then(([rows, fieldData]) =>{
@@ -22,15 +31,25 @@ export const shopController = (req,res,next) =>{
         if (err) console.log(err);
     })
 }
+//controlleur de la page qui affiche le détail du produit
 export const shopControllerGetProduct = (req,res, next) => {
     const productId = req.params.productId
     product.fetch(productId)
     .then(([rows])=> {
         const product = rows [0];
         res.render("product-details", {
-            pagetitle: product.name,
+            pagetitle: "produit",
             path: "/",
             product: product,
         })
     })
 }
+//Controller de la requete supression
+export const ShopControllerDelete = (req, res, next) => {
+    const productId = req.params.productId;
+
+    // Supprimer le produit de la bdd
+    connection.query('DELETE FROM product WHERE id = ?', [productId], (error, results) => {
+        
+    });
+};

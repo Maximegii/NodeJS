@@ -1,12 +1,16 @@
+
+
 import express from "express";
 
-const router = express.Router();
+import { authControllerAddPage,authControllerAdd, authControllerLogin} from "../controllers/auth.js"
 
-router.get("/login", (req,res)=> {
-    res.render("login",{});
-});
-router.get("/account", (req,res)=> {
-    res.render("compte",{});
-});
+const router = express.Router();
+router.use(express.urlencoded({ extended: true }));
+
+router.get("/login",authControllerLogin)
+router.get("/account",authControllerAddPage)
+router.post("/account",authControllerAdd)
+
+
 
 export default router;

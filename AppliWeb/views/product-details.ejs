@@ -3,14 +3,18 @@
 
 <body>
     <%- include('include/header.ejs') %>
-    <main class="centered">
-        <h1><%= product.name %></h1>
+    <main class="centered" style="padding-top: 10%;">
+        <h1 style="color: black;"><%= product.name %></h1>
         <hr>
         <div>
-            <img src="<%= product.img %>" alt="<%= product.name %>">
+            <img src="<%= product.img %>" alt="<%= product.name %>" style="width: 50%;">
         </div>
-        <h2>$<%= product.price %></h2>
-        <p><%= product.description %></p>
+        <h2 style="color: black;">$<%= product.price %></h2>
+        <p style="color: black;"><%= product.description %></p>
+
+        <form id="deleteForm" action="/product/<%= product.id %>" method="POST">
+            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
+        </form>
 
         <%- include('include/footer.ejs') %>
 

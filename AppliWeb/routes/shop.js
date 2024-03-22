@@ -1,11 +1,13 @@
 import express from "express";
 
-import {shopController, shopControllerGetProduct} from "../controllers/shop.js"
+import {ShopControllerDelete, shopController, shopControllerGetProduct, shopControllerHome} from "../controllers/shop.js"
 
 const router = express.Router();
 
-router.get("/",shopController)
+router.get("/explore",shopController)
 router.get("/product/:productId",shopControllerGetProduct)
+router.post("/product/:productId", ShopControllerDelete);
+router.get("/",shopControllerHome);
 
 
 export default router;
